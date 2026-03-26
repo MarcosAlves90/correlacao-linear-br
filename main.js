@@ -2,6 +2,12 @@ import { coeficientePearson, equacaoReta, gerarDadosEstudo } from "./util/index.
 
 process.stdout.setEncoding("utf8");
 process.stdin.setEncoding("utf8");
+process.env.LC_ALL = "pt_BR.UTF-8";
+
+const logUtf8 = (mensagem = "") => {
+    const texto = typeof mensagem === "string" ? mensagem : JSON.stringify(mensagem, null, 2);
+    console.log(texto.normalize("NFC"));
+};
 
 if (process.platform === "win32") {
     try {
@@ -17,20 +23,20 @@ const x = dadosGerados.map((dado) => Number(dado.horasEstudo));
 const y = dadosGerados.map((dado) => Number(dado.notaFinal));
 
 try {
-    console.log("=== DADOS GERADOS ===");
+    logUtf8("=== DADOS GERADOS ===");
     console.table(dadosGerados);
 
     const resultadoPearson = coeficientePearson(x, y);
     const existeRelacaoLinear = resultadoPearson.forca !== "inexistente" && resultadoPearson.forca !== "fraca";
 
-    console.log("\n=== DECISÃO ===");
+    logUtf8("\n=== DECISÃO ===");
 
     if (existeRelacaoLinear) {
-        console.log("Há relação linear suficiente para calcular a equação da reta.");
+        logUtf8("Há relação linear suficiente para calcular a equação da reta.");
         equacaoReta(x, y);
     } else {
-        console.log("A relação encontrada foi muito fraca. A equação da reta não será calculada.");
+        logUtf8("A relação encontrada foi muito fraca. A equação da reta não será calculada.");
     }
 } catch (error) {
-    console.error(error.message);
+    logUtf8(error.message);
 }

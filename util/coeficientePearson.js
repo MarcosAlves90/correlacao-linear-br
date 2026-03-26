@@ -35,10 +35,10 @@ const coeficientePearson = (x, y) => {
     const forca = classificarForcaCorrelacao(r);
     const direcao = r > 0 ? "positiva" : r < 0 ? "negativa" : "nula";
 
-    console.log("\n=== ANALISE DE PEARSON ===");
+    console.log("\n=== ANÁLISE DE PEARSON ===");
     console.log(`Coeficiente de Pearson (r): ${r.toFixed(4)}`);
-    console.log(`Direcao da correlacao: ${direcao}`);
-    console.log(`Intensidade da correlacao: ${forca}`);
+    console.log(`Direção da correlação: ${direcao}`);
+    console.log(`Intensidade da correlação: ${forca}`);
 
     return {
         coeficiente: r,

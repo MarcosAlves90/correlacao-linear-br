@@ -1,3 +1,5 @@
+const logUtf8 = (mensagem = "") => console.log(String(mensagem).normalize("NFC"));
+
 const equacaoReta = (x, y) => {
     if (x.length !== y.length || x.length === 0) {
         throw new Error("Os vetores x e y precisam ter o mesmo tamanho e não podem estar vazios.");
@@ -29,8 +31,8 @@ const equacaoReta = (x, y) => {
     const m = (n * somaXY - somaX * somaY) / denominador;
     const b = (somaY - m * somaX) / n;
 
-    console.log("\n=== REGRESSAO LINEAR ===");
-    console.log(`Equacao da reta: y = ${m.toFixed(2)}x + ${b.toFixed(2)}`);
+    logUtf8("\n=== REGRESSÃO LINEAR ===");
+    logUtf8(`Equação da reta: y = ${m.toFixed(2)}x + ${b.toFixed(2)}`);
 
     const mediaY = somaY / n;
 
@@ -46,8 +48,8 @@ const equacaoReta = (x, y) => {
 
     const rQuadrado = sqTotal === 0 ? 1 : 1 - (sqResiduo / sqTotal);
 
-    console.log(`Coeficiente de determinacao (R^2): ${rQuadrado.toFixed(4)}`);
-    console.log(`Percentual explicado pelo modelo: ${(rQuadrado * 100).toFixed(2)}%`);
+    logUtf8(`Coeficiente de determinação (R^2): ${rQuadrado.toFixed(4)}`);
+    logUtf8(`Percentual explicado pelo modelo: ${(rQuadrado * 100).toFixed(2)}%`);
 };
 
 export default equacaoReta;
